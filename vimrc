@@ -3,8 +3,8 @@
 " ###########
 
 " -------------------------------------
-" To install plugin the first time:
-" > vim +PlugInstall +qall
+" To install the plugins the first time:
+" vim +PlugInstall +qall
 " cd ~/.vim/plugged/vimproc.vim && make
 " -------------------------------------
 
@@ -33,9 +33,7 @@ set nocompatible
 " ### Plugin conf ###
 " ###################
 
-" ----------------
-"       GIT
-" ----------------
+" GIT
 " -- vim-gitgutter
 highlight clear SignColumn
 highlight SignColumn ctermbg=0
@@ -43,9 +41,7 @@ nmap gn <Plug>GitGutterNextHunk
 nmap gN <Plug>GitGutterPrevHunk
 
 
-" ----------------------------
-"       File Management
-" ----------------------------
+" File Management
 let g:unite_source_history_yank_enable = 1
 try
   let g:unite_source_rec_async_command='ag --nocolor --nogroup -g ""'
@@ -54,17 +50,23 @@ catch
 endtry
 " search a file in the filetree
 nnoremap <space><space> :vsplit<cr> :<C-u>Unite -start-insert file_rec/async<cr>
-nnoremap <space>f :vsplit<cr> :<C-u>Unite file<cr>
-nnoremap <space>g :vsplit<cr> :<C-u>Unite -start-insert file_rec/git<cr>
-" see the yank history
-nnoremap <space>y :vsplit<cr>:<C-u>Unite history/yank<cr>
 " reset not it is <C-l> normally
 :nnoremap <space>r <Plug>(unite_restart)
 
+" --- type ¬ to search the string under the cursor in all files in the current 
+"  dir
+nmap ¬ :Ag <c-r>=expand("<cword>")<cr><cr>
+" --- type <space>/ to search all occurrences of a given string in all files
+"  in the current directory
+"  This requires silver searcher : apt install silversearcher-ag
+nnoremap <space>/ :Ag 
 
 
-" ############################################################################
+" ----------------------------------------------------------------------------
 
+" ###############
+" # Main config #
+" ###############
 
 " URL: http://vim.wikia.com/wiki/Example_vimrc
 " Features {{{1
@@ -213,10 +215,11 @@ nnoremap <C-L> :nohl<CR><C-L>
 "------------------------------------------------------------
 
 
-" ############################################################################
 
 
-
+" ###################
+" # Personal config #
+" ###################
 
 "------------------------------------------------------------
 " Configuration for netrw (file browser)
@@ -236,13 +239,17 @@ let g:netrw_winsize = 25
 "augroup END
 "------------------------------------------------------------
 
+
+"------------------------------------------------------------
 " Move between splits
 noremap <C-h> <C-w>h
 noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
+"------------------------------------------------------------
 
 
+"------------------------------------------------------------
 " Spellchecking
 if has("spell") " if vim support spell checking
     " Download dictionaries automatically
@@ -250,10 +257,9 @@ if has("spell") " if vim support spell checking
         call mkdir($HOME."/.vim/spell","p")
     endif
     set spellsuggest=10 " z= will show suggestions (10 at most)
-    " spell checking for text, HTML, LaTeX, markdown and literate Haskell
-    autocmd BufEnter *.txt,*.tex,*.html,*.md,*.ymd,*.lhs setlocal spell
-    autocmd BufEnter *.txt,*.tex,*.html,*.md,*.ymd,*.lhs setlocal spelllang=fr,en
-    " better error highlighting with solarized
+    " spell checking for text, HTML, LaTeX, markdown and rst
+    autocmd BufEnter *.txt,*.tex,*.html,*.md,*.rst setlocal spell
+    autocmd BufEnter *.txt,*.tex,*.html,*.md,*.rst setlocal spelllang=en
     highlight clear SpellBad
     highlight SpellBad term=standout ctermfg=2 term=underline cterm=underline
     highlight clear SpellCap
@@ -263,6 +269,67 @@ if has("spell") " if vim support spell checking
     highlight clear SpellLocal
     highlight SpellLocal term=underline cterm=underline
 endif
+"------------------------------------------------------------
 
 
+"------------------------------------------------------------
+" Colour the limit column 
+if (exists('+colorcolumn'))
+    set colorcolumn=80
+    highlight ColorColumn ctermbg=0 guibg=lightgrey
+endif
+"------------------------------------------------------------
+
+
+"------------------------------------------------------------
+" Set Lucius colorscheme
+colorscheme lucius
+LuciusBlackHighContrast
+"------------------------------------------------------------
+
+
+"------------------------------------------------------------
+" statusline
+function! InsertStatuslineColor(mode)
+  if a:mode == 'i'
+    hi statusline guibg=Cyan ctermfg=6 guifg=Black ctermbg=0
+  elseif a:mode == 'r'
+    hi statusline guibg=Purple ctermfg=5 guifg=Black ctermbg=0
+  else
+    hi statusline guibg=DarkRed ctermfg=1 guifg=Black ctermbg=0
+  endif
+endfunction
+
+au InsertEnter * call InsertStatuslineColor(v:insertmode)
+au InsertLeave * hi statusline guibg=DarkGrey ctermfg=8 guifg=White ctermbg=15
+
+" default the statusline to green when entering Vim
+hi statusline guibg=DarkGrey ctermfg=8 guifg=White ctermbg=15
+
+" Formats the statusline
+set statusline=%F\                           " file name
+set statusline+=[%{strlen(&fenc)?&fenc:'none'}, "file encoding
+set statusline+=%{&ff}] "file format
+set statusline+=%y      "filetype
+set statusline+=%h      "help file flag
+set statusline+=%m      "modified flag
+set statusline+=%r      "read only flag
+
+" Puts in the current git status
+"    if count(g:pathogen_disabled, 'Fugitive') < 1   
+"        set statusline+=%{fugitive#statusline()}
+"    endif
+
+" Puts in syntastic warnings
+"    if count(g:pathogen_disabled, 'Syntastic') < 1  
+"        set statusline+=%#warningmsg#
+"        set statusline+=%{SyntasticStatuslineFlag()}
+"        set statusline+=%*
+"    endif
+
+set statusline+=\ %=                        " align left
+set statusline+=Line:%l/%L[%p%%]            " line X of Y [percent of file]
+set statusline+=\ Col:%c                    " current column
+set statusline+=\ Buf:%n                    " Buffer number
+"------------------------------------------------------------
 
