@@ -242,7 +242,6 @@ noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
 
-
 " Spellchecking
 if has("spell") " if vim support spell checking
     " Download dictionaries automatically
@@ -250,10 +249,9 @@ if has("spell") " if vim support spell checking
         call mkdir($HOME."/.vim/spell","p")
     endif
     set spellsuggest=10 " z= will show suggestions (10 at most)
-    " spell checking for text, HTML, LaTeX, markdown and literate Haskell
-    autocmd BufEnter *.txt,*.tex,*.html,*.md,*.ymd,*.lhs setlocal spell
-    autocmd BufEnter *.txt,*.tex,*.html,*.md,*.ymd,*.lhs setlocal spelllang=fr,en
-    " better error highlighting with solarized
+    " spell checking for text, HTML, LaTeX, markdown and rst
+    autocmd BufEnter *.txt,*.tex,*.html,*.md,*.rst setlocal spell
+    autocmd BufEnter *.txt,*.tex,*.html,*.md,*.rst setlocal spelllang=en
     highlight clear SpellBad
     highlight SpellBad term=standout ctermfg=2 term=underline cterm=underline
     highlight clear SpellCap
