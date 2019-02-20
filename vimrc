@@ -8,21 +8,26 @@
 " cd ~/.vim/plugged/vimproc.vim && make
 " -------------------------------------
 
+
 call plug#begin('~/.vim/plugged')
 
-" Unite
+" syntax checker
+Plug 'scrooloose/syntastic'             
+
+" Unite (file manager)
 "   depend on vimproc
 "   you have to go to .vim/plugin/vimproc.vim and do a ./make
 Plug 'Shougo/vimproc.vim'
 Plug 'Shougo/unite.vim'
+
+" AG
+Plug 'rking/ag.vim'
 
 " GIT
 Plug 'tpope/vim-fugitive'
 " show which line changed using git
 Plug 'airblade/vim-gitgutter'
 
-" -- ag
-Plug 'rking/ag.vim'
 
 call plug#end()
 
@@ -33,7 +38,16 @@ set nocompatible
 " ### Plugin conf ###
 " ###################
 
-" GIT
+
+" syntastic
+" :SyntasticCheck , :Errors
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+"let g:syntastic_check_on_open = 1  " :SyntasticCheck
+let g:syntastic_check_on_wq = 0
+
+
+" git
 " -- vim-gitgutter
 highlight clear SignColumn
 highlight SignColumn ctermbg=0
@@ -42,6 +56,7 @@ nmap gN <Plug>GitGutterPrevHunk
 
 
 " File Management
+" unite + ag (requires package: silversearcher-ag)
 let g:unite_source_history_yank_enable = 1
 try
   let g:unite_source_rec_async_command='ag --nocolor --nogroup -g ""'
@@ -58,8 +73,8 @@ nnoremap <space><space> :vsplit<cr> :<C-u>Unite -start-insert file_rec/async<cr>
 nmap ¬ :Ag <c-r>=expand("<cword>")<cr><cr>
 " --- type <space>/ to search all occurrences of a given string in all files
 "  in the current directory
-"  This requires silver searcher : apt install silversearcher-ag
 nnoremap <space>/ :Ag 
+
 
 
 " ----------------------------------------------------------------------------
@@ -226,26 +241,11 @@ nnoremap <C-L> :nohl<CR><C-L>
 " Open file browser: :Vex, :Hex, :Ex (same buffer). 
 " Change buffer: :bn, :bp
 " Change tab: Ctrl+w (twice)
-" Open file: :e filename 
 let g:netrw_banner = 0
 let g:netrw_liststyle = 3
 let g:netrw_browse_split = 4
 let g:netrw_altv = 1
 let g:netrw_winsize = 25
-" Start netrw automatically
-"augroup ProjectDrawer
-"  autocmd!
-"  autocmd VimEnter * :Vexplore
-"augroup END
-"------------------------------------------------------------
-
-
-"------------------------------------------------------------
-" Move between splits
-noremap <C-h> <C-w>h
-noremap <C-j> <C-w>j
-noremap <C-k> <C-w>k
-noremap <C-l> <C-w>l
 "------------------------------------------------------------
 
 
@@ -275,7 +275,7 @@ endif
 "------------------------------------------------------------
 " Colour the limit column 
 if (exists('+colorcolumn'))
-    set colorcolumn=80
+    set colorcolumn=   "80
     highlight ColorColumn ctermbg=0 guibg=lightgrey
 endif
 "------------------------------------------------------------
@@ -303,7 +303,7 @@ endfunction
 au InsertEnter * call InsertStatuslineColor(v:insertmode)
 au InsertLeave * hi statusline guibg=DarkGrey ctermfg=8 guifg=White ctermbg=15
 
-" default the statusline to green when entering Vim
+" default the statusline to white when entering Vim
 hi statusline guibg=DarkGrey ctermfg=8 guifg=White ctermbg=15
 
 " Formats the statusline
@@ -316,16 +316,12 @@ set statusline+=%m      "modified flag
 set statusline+=%r      "read only flag
 
 " Puts in the current git status
-"    if count(g:pathogen_disabled, 'Fugitive') < 1   
-"        set statusline+=%{fugitive#statusline()}
-"    endif
+set statusline+=%{fugitive#statusline()}
 
 " Puts in syntastic warnings
-"    if count(g:pathogen_disabled, 'Syntastic') < 1  
-"        set statusline+=%#warningmsg#
-"        set statusline+=%{SyntasticStatuslineFlag()}
-"        set statusline+=%*
-"    endif
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
 
 set statusline+=\ %=                        " align left
 set statusline+=Line:%l/%L[%p%%]            " line X of Y [percent of file]
