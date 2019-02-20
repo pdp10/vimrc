@@ -3,7 +3,13 @@ Forked from https://gitlab.esy.fun/yogsototh/vimrc
 # Install
 
 ```
+cd ~/
 git clone https://github.com/pdp10/vimrc.git .vim
-sh .vim/install.sh
+mv .vimrc .vimrc.bak 2>/dev/null
+ln -s .vim/vimrc .vimrc
+
+# Alternatively :PlugInstall 
+vim +PlugInstall +qall
+cd .vim/plugged/vimproc.vim && make
 ```
 
