@@ -291,42 +291,36 @@ LuciusBlackHighContrast
 
 "------------------------------------------------------------
 " statusline
-function! InsertStatuslineColor(mode)
-  if a:mode == 'i'
-    hi statusline guibg=Cyan ctermfg=6 guifg=Black ctermbg=0
-  elseif a:mode == 'r'
-    hi statusline guibg=Purple ctermfg=5 guifg=Black ctermbg=0
-  else
-    hi statusline guibg=DarkRed ctermfg=1 guifg=Black ctermbg=0
-  endif
-endfunction
 
-au InsertEnter * call InsertStatuslineColor(v:insertmode)
-au InsertLeave * hi statusline guibg=DarkGrey ctermfg=8 guifg=White ctermbg=15
+" clear the colour of the mode 
+hi clear ModeMsg
+hi ModeMsg term=bold cterm=bold gui=bold 
 
+" change the colour of the statusline based on mode
+if version >= 700
+  au InsertEnter * hi StatusLine guibg=Red1 ctermfg=196 guifg=Black ctermbg=0
+  au InsertLeave * hi statusline guibg=DarkGrey ctermfg=8 guifg=White ctermbg=15
+endif
 " default the statusline to white when entering Vim
 hi statusline guibg=DarkGrey ctermfg=8 guifg=White ctermbg=15
 
 " Formats the statusline
 set statusline=%F\                           " file name
+set statusline+=\%=                          "align left
+
+" Puts in syntastic warnings
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+" Puts in the current git status
+set statusline+=%{fugitive#statusline()}
+
 set statusline+=[%{strlen(&fenc)?&fenc:'none'}, "file encoding
 set statusline+=%{&ff}] "file format
 set statusline+=%y      "filetype
 set statusline+=%h      "help file flag
 set statusline+=%m      "modified flag
 set statusline+=%r      "read only flag
-
-" Puts in the current git status
-set statusline+=%{fugitive#statusline()}
-
-" Puts in syntastic warnings
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-set statusline+=\ %=                        " align left
-set statusline+=Line:%l/%L[%p%%]            " line X of Y [percent of file]
-set statusline+=\ Col:%c                    " current column
-set statusline+=\ Buf:%n                    " Buffer number
+set statusline+=\ %p%%\ %l:%c\ b%n    "percent row:col buffer
 "------------------------------------------------------------
 
