@@ -282,8 +282,8 @@ endif
 
 "------------------------------------------------------------
 " Set Lucius colorscheme
-colorscheme lucius
-LuciusBlackHighContrast
+"colorscheme lucius
+"LuciusBlackHighContrast
 "------------------------------------------------------------
 
 
@@ -297,10 +297,10 @@ hi ModeMsg term=bold cterm=bold gui=bold
 " change the colour of the statusline based on mode
 if version >= 700
   au InsertEnter * hi StatusLine guibg=Red1 ctermfg=196 guifg=Black ctermbg=0
-  au InsertLeave * hi statusline guibg=DarkGrey ctermfg=8 guifg=White ctermbg=15
+  au InsertLeave * hi statusline guibg=Black ctermfg=15 guifg=White ctermbg=0
 endif
 " default the statusline to white when entering Vim
-hi statusline guibg=DarkGrey ctermfg=8 guifg=White ctermbg=15
+hi statusline guibg=Black ctermfg=15 guifg=White ctermbg=0
 
 " Formats the statusline
 set statusline=%F\                           " file name
@@ -322,3 +322,4 @@ set statusline+=%m      "modified flag
 set statusline+=%r      "read only flag
 set statusline+=\ %p%%\ %l:%c\ b%n    "percent row:col buffer
 "------------------------------------------------------------
+
