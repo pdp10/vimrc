@@ -11,8 +11,10 @@
 
 call plug#begin('~/.vim/plugged')
 
-" syntax checker
-Plug 'scrooloose/syntastic'             
+if version >= 704
+  " syntax checker
+  Plug 'scrooloose/syntastic'             
+endif
 
 " Unite (file manager)
 "   depend on vimproc
@@ -38,14 +40,14 @@ set nocompatible
 " ### Plugin conf ###
 " ###################
 
-
-" syntastic
-" :SyntasticCheck , :Errors
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-"let g:syntastic_check_on_open = 1  " :SyntasticCheck
-let g:syntastic_check_on_wq = 0
-
+if version >= 704
+  " syntastic
+  " :SyntasticCheck , :Errors
+  let g:syntastic_always_populate_loc_list = 1
+  let g:syntastic_auto_loc_list = 1
+  "let g:syntastic_check_on_open = 1  " :SyntasticCheck
+  let g:syntastic_check_on_wq = 0
+endif
 
 " git
 " -- vim-gitgutter
@@ -308,10 +310,12 @@ hi statusline guibg=DarkGrey ctermfg=8 guifg=White ctermbg=15
 set statusline=%F\                           " file name
 set statusline+=\%=                          "align left
 
-" Puts in syntastic warnings
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+if version >= 704
+  " Puts in syntastic warnings
+  set statusline+=%#warningmsg#
+  set statusline+=%{SyntasticStatuslineFlag()}
+  set statusline+=%*
+endif
 " Puts in the current git status
 set statusline+=%{fugitive#statusline()}
 

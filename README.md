@@ -8,8 +8,7 @@ git clone https://github.com/pdp10/vimrc.git .vim
 mv .vimrc .vimrc.bak 2>/dev/null
 ln -s .vim/vimrc .vimrc
 
-# Alternatively :PlugInstall 
-vim +PlugInstall +qall
+# Inside vim run :PlugInstall 
 cd .vim/plugged/vimproc.vim && make
 ```
 
