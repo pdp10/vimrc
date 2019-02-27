@@ -11,7 +11,7 @@
 
 call plug#begin('~/.vim/plugged')
 
-if version >= 704
+if version >= 705
   " syntax checker
   Plug 'scrooloose/syntastic'             
 endif
@@ -40,7 +40,7 @@ set nocompatible
 " ### Plugin conf ###
 " ###################
 
-if version >= 704
+if version >= 705
   " syntastic
   " :SyntasticCheck , :Errors
   let g:syntastic_always_populate_loc_list = 1
@@ -310,7 +310,7 @@ hi statusline guibg=DarkGrey ctermfg=8 guifg=White ctermbg=15
 set statusline=%F\                           " file name
 set statusline+=\%=                          "align left
 
-if version >= 704
+if version >= 705
   " Puts in syntastic warnings
   set statusline+=%#warningmsg#
   set statusline+=%{SyntasticStatuslineFlag()}
