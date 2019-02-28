@@ -281,22 +281,22 @@ endif
 
 
 "------------------------------------------------------------
-" Set Lucius colorscheme
-"colorscheme lucius
-"LuciusBlackHighContrast
+" Set colorscheme
+colorscheme koehler  " ron
+" Colour line numbers
+hi LineNr ctermfg=grey
+" clear the colour of the mode 
+hi clear ModeMsg
+hi ModeMsg term=bold cterm=bold gui=bold 
 "------------------------------------------------------------
 
 
 "------------------------------------------------------------
 " statusline
 
-" clear the colour of the mode 
-hi clear ModeMsg
-hi ModeMsg term=bold cterm=bold gui=bold 
-
 " change the colour of the statusline based on mode
 if version >= 700
-  au InsertEnter * hi StatusLine guibg=Red1 ctermfg=196 guifg=Black ctermbg=0
+  au InsertEnter * hi statusline guibg=Red1 ctermfg=15 guifg=White ctermbg=1
   au InsertLeave * hi statusline guibg=Black ctermfg=15 guifg=White ctermbg=0
 endif
 " default the statusline to white when entering Vim
