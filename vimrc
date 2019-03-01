@@ -268,6 +268,7 @@ if has("spell") " if vim support spell checking
     highlight clear SpellLocal
     highlight SpellLocal term=underline cterm=underline
 endif
+set nospell  " by default, spell check is disabled. To enable type :set spell
 "------------------------------------------------------------
 
 
