@@ -249,6 +249,7 @@ let g:netrw_winsize = 25
 
 "------------------------------------------------------------
 " Spellchecking
+" use :set nospell to disable spelling
 " files: http://ftp.vim.org/vim/runtime/spell/
 if has("spell") " if vim support spell checking
     " Download dictionaries automatically
@@ -268,7 +269,6 @@ if has("spell") " if vim support spell checking
     highlight clear SpellLocal
     highlight SpellLocal term=underline cterm=underline
 endif
-set nospell  " by default, spell check is disabled. To enable type :set spell
 "------------------------------------------------------------
 
 
