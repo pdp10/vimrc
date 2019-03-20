@@ -40,8 +40,8 @@ set nocompatible
 
 " syntastic
 " :SyntasticCheck , :Errors
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
+let g:syntastic_always_populate_loc_list = 0
+let g:syntastic_auto_loc_list = 0
 "let g:syntastic_check_on_open = 1  " :SyntasticCheck
 let g:syntastic_check_on_wq = 0
 
@@ -257,9 +257,9 @@ if has("spell") " if vim support spell checking
         call mkdir($HOME."/.vim/spell","p")
     endif
     set spellsuggest=10 " z= will show suggestions (10 at most)
-    " spell checking for text, HTML, LaTeX, markdown and rst
-    autocmd BufEnter *.txt,*.tex,*.html,*.md,*.rst setlocal spell
-    autocmd BufEnter *.txt,*.tex,*.html,*.md,*.rst setlocal spelllang=en
+    " auto spell checking for text, HTML, LaTeX, markdown and rst
+    "autocmd BufEnter *.txt,*.tex,*.html,*.md,*.rst setlocal spell
+    "autocmd BufEnter *.txt,*.tex,*.html,*.md,*.rst setlocal spelllang=en
     highlight clear SpellBad
     highlight SpellBad term=standout ctermfg=2 term=underline cterm=underline
     highlight clear SpellCap
