@@ -50,8 +50,11 @@ let g:syntastic_check_on_wq = 0
 " -- vim-gitgutter
 "nmap gn <Plug>GitGutterNextHunk
 "nmap gN <Plug>GitGutterPrevHunk
+
 " -- git-fugitive
+" to execute any git command, use :Git [args]
 nnoremap ga :Git add %:p<cr><cr>
+" instead of gs, one can use :G 
 nnoremap gs :Gstatus<cr>
 nnoremap gc :Gcommit -v -q %:p<cr>
 nnoremap gd :Gdiff<cr>
