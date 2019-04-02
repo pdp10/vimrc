@@ -26,8 +26,8 @@ Plug 'rking/ag.vim'
 " GIT
 Plug 'tpope/vim-fugitive'
 " show which line changed using git
-Plug 'airblade/vim-gitgutter'
-
+" commented as gd is a better option
+"Plug 'airblade/vim-gitgutter'
 
 call plug#end()
 
@@ -45,12 +45,18 @@ let g:syntastic_auto_loc_list = 0
 "let g:syntastic_check_on_open = 1  " :SyntasticCheck
 let g:syntastic_check_on_wq = 0
 
+
 " git
 " -- vim-gitgutter
-highlight clear SignColumn
-highlight SignColumn ctermbg=0
-nmap gn <Plug>GitGutterNextHunk
-nmap gN <Plug>GitGutterPrevHunk
+"nmap gn <Plug>GitGutterNextHunk
+"nmap gN <Plug>GitGutterPrevHunk
+" -- git-fugitive
+nnoremap ga :Git add %:p<CR><CR>
+nnoremap gs :Gstatus<CR>
+nnoremap gc :Gcommit -v -q %:p<CR>
+nnoremap gd :Gdiff<CR>
+nnoremap gb :Git branch<Space>
+nnoremap go :Git checkout<Space>
 
 
 " File Management
@@ -316,7 +322,7 @@ set statusline+=%*
 "set statusline+=%{FugitiveStatusline()}
 " the above status line can take a lot of space cutting the filename when
 " vertical windows are open. As this information is not necessary all the time 
-" it makes more sense to have specific commands. See below
+" it makes more sense to have specific commands. 
 
 set statusline+=[%{strlen(&fenc)?&fenc:'none'}, "file encoding
 set statusline+=%{&ff}] "file format
@@ -325,15 +331,5 @@ set statusline+=%h      "help file flag
 set statusline+=%m      "modified flag
 set statusline+=%r      "read only flag
 set statusline+=\ %p%%\ %l:%c\ b%n    "percent row:col buffer
-"------------------------------------------------------------
-
-
-"------------------------------------------------------------
-" fugitive git bindings
-nnoremap ga :Git add %:p<CR><CR>
-nnoremap gs :Gstatus<CR>
-nnoremap gc :Gcommit -v -q %:p<CR>
-nnoremap gd :Gdiff<CR>
-nnoremap gb :Git branch<Space>
 "------------------------------------------------------------
 
