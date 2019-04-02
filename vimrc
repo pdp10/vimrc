@@ -313,7 +313,10 @@ set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
 " Puts in the current git status
-set statusline+=%{fugitive#statusline()}
+"set statusline+=%{FugitiveStatusline()}
+" the above status line can take a lot of space cutting the filename when
+" vertical windows are open. As this information is not necessary all the time 
+" it makes more sense to have specific commands. See below
 
 set statusline+=[%{strlen(&fenc)?&fenc:'none'}, "file encoding
 set statusline+=%{&ff}] "file format
@@ -322,5 +325,17 @@ set statusline+=%h      "help file flag
 set statusline+=%m      "modified flag
 set statusline+=%r      "read only flag
 set statusline+=\ %p%%\ %l:%c\ b%n    "percent row:col buffer
+"------------------------------------------------------------
+
+
+"------------------------------------------------------------
+" fugitive git bindings
+nnoremap <space>ga :Git add %:p<CR><CR>
+nnoremap <space>gs :Gstatus<CR>
+nnoremap <space>gc :Gcommit -v -q<CR>
+nnoremap <space>gt :Gcommit -v -q %:p<CR>
+nnoremap <space>gd :Gdiff<CR>
+nnoremap <space>gb :Git branch<Space>
+nnoremap <space>go :Git checkout<Space>
 "------------------------------------------------------------
 
