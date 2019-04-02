@@ -51,10 +51,10 @@ let g:syntastic_check_on_wq = 0
 "nmap gn <Plug>GitGutterNextHunk
 "nmap gN <Plug>GitGutterPrevHunk
 " -- git-fugitive
-nnoremap ga :Git add %:p<CR><CR>
-nnoremap gs :Gstatus<CR>
-nnoremap gc :Gcommit -v -q %:p<CR>
-nnoremap gd :Gdiff<CR>
+nnoremap ga :Git add %:p<cr><cr>
+nnoremap gs :Gstatus<cr>
+nnoremap gc :Gcommit -v -q %:p<cr>
+nnoremap gd :Gdiff<cr>
 nnoremap gb :Git branch<Space>
 nnoremap go :Git checkout<Space>
 
