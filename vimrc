@@ -330,12 +330,10 @@ set statusline+=\ %p%%\ %l:%c\ b%n    "percent row:col buffer
 
 "------------------------------------------------------------
 " fugitive git bindings
-nnoremap <space>ga :Git add %:p<CR><CR>
-nnoremap <space>gs :Gstatus<CR>
-nnoremap <space>gc :Gcommit -v -q<CR>
-nnoremap <space>gt :Gcommit -v -q %:p<CR>
-nnoremap <space>gd :Gdiff<CR>
-nnoremap <space>gb :Git branch<Space>
-nnoremap <space>go :Git checkout<Space>
+nnoremap ga :Git add %:p<CR><CR>
+nnoremap gs :Gstatus<CR>
+nnoremap gc :Gcommit -v -q %:p<CR>
+nnoremap gd :Gdiff<CR>
+nnoremap gb :Git branch<Space>
 "------------------------------------------------------------
 
