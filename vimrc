@@ -39,10 +39,10 @@ set nocompatible
 " ###################
 
 " syntastic
-" :SyntasticCheck , :Errors
+" --- type :SyntasticCheck :Errors
 let g:syntastic_always_populate_loc_list = 0
 let g:syntastic_auto_loc_list = 0
-"let g:syntastic_check_on_open = 1  " :SyntasticCheck
+let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 
 
@@ -61,7 +61,6 @@ nnoremap gd :Gdiff<cr>
 nnoremap gb :Git branch<Space>
 nnoremap go :Git checkout<Space>
 
-
 " File Management
 " unite + ag (requires package: silversearcher-ag)
 let g:unite_source_history_yank_enable = 1
@@ -70,17 +69,12 @@ try
   call unite#filters#matcher_default#use(['matcher_fuzzy'])
 catch
 endtry
-" search a file in the filetree
-nnoremap <space><space> :vsplit<cr> :<C-u>Unite -start-insert file_rec/async<cr>
-" reset not it is <C-l> normally
-:nnoremap <space>r <Plug>(unite_restart)
-
-" --- type ¬ to search the string under the cursor in all files in the current 
-"  dir
-nmap ¬ :Ag <c-r>=expand("<cword>")<cr><cr>
+" two powerful searches in addition to /
 " --- type <space>/ to search all occurrences of a given string in all files
 "  in the current directory
 nnoremap <space>/ :Ag 
+" --- type <space>\ to search a file in the filetree
+nnoremap <space>\ :vsplit<cr> :<C-u>Unite -start-insert file_rec/async<cr>
 
 
 
