@@ -301,18 +301,18 @@ set statusline+=%#DiffText#%{(mode()=='i')?'\ \ INSERT\ ':''}
 set statusline+=%#DiffChange#%{(mode()=='r')?'\ \ REPLACE\ ':''}
 set statusline+=%#Visual#%{(mode()=='v')?'\ \ VISUAL\ ':''}
 
-set statusline+=%#LineNr#       " colour
+set statusline+=%#Conceal#       " colour
 set statusline+=%{&paste?'\ PASTE\ ':''}
 set statusline+=%{&spell?'\ SPELL\ ':''}
 
 set statusline+=%t\         "file name
-set statusline+=%#Cursor#  " colour
+set statusline+=%#LineNr#  " colour
 set statusline+=\%=        "align left
 
 " Puts in syntastic warnings
-set statusline+=%#warningmsg#
+set statusline+=%#WarningMsg#
 set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%#LineNr#   " colour
+set statusline+=%#Conceal#   " colour
 
 " git status
 " skip as it can take a lot of space cutting the filename 
