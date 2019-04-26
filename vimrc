@@ -278,57 +278,54 @@ endif
 
 
 "------------------------------------------------------------
-" Colour the limit column 
-if (exists('+colorcolumn'))
-    set colorcolumn=   "80
-    highlight ColorColumn ctermbg=0 guibg=lightgrey
-endif
-"------------------------------------------------------------
-
-
-"------------------------------------------------------------
 " Set colorscheme
 colorscheme koehler  " ron
 " Colour line numbers
 hi LineNr ctermfg=grey
-" clear the colour of the mode 
-hi clear ModeMsg
-hi ModeMsg term=bold cterm=bold gui=bold 
 "------------------------------------------------------------
 
 
 "------------------------------------------------------------
 " statusline
 
-" change the colour of the statusline based on mode
-if version >= 700
-  au InsertEnter * hi statusline guibg=Red1 ctermfg=15 guifg=White ctermbg=1
-  au InsertLeave * hi statusline guibg=Black ctermfg=15 guifg=White ctermbg=0
-endif
-" default the statusline to white when entering Vim
-hi statusline guibg=Black ctermfg=15 guifg=White ctermbg=0
+" add a title on top of the shell
+" this reports filename (filepath) preventing the need of 
+" %F in the statusline
+set title
 
-" Formats the statusline
-set statusline=%F\                           " file name
-set statusline+=\%=                          "align left
+" skip the mode as already shown in statusline 
+set noshowmode
+set statusline=
+set statusline+=%#DiffAdd#%{(mode()=='n')?'\ \ NORMAL\ ':''}
+set statusline+=%#DiffText#%{(mode()=='i')?'\ \ INSERT\ ':''}
+set statusline+=%#DiffChange#%{(mode()=='r')?'\ \ REPLACE\ ':''}
+set statusline+=%#Visual#%{(mode()=='v')?'\ \ VISUAL\ ':''}
+
+set statusline+=%#LineNr#       " colour
+set statusline+=%{&paste?'\ PASTE\ ':''}
+set statusline+=%{&spell?'\ SPELL\ ':''}
+
+set statusline+=%t\         "file name
+set statusline+=%#Cursor#  " colour
+set statusline+=\%=        "align left
 
 " Puts in syntastic warnings
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+set statusline+=%#LineNr#   " colour
 
-" Puts in the current git status
+" git status
+" skip as it can take a lot of space cutting the filename 
+" when vertical windows are open. Use gs instead. 
 "set statusline+=%{FugitiveStatusline()}
-" the above status line can take a lot of space cutting the filename when
-" vertical windows are open. As this information is not necessary all the time 
-" it makes more sense to have specific commands. 
 
-set statusline+=[%{strlen(&fenc)?&fenc:'none'}, "file encoding
-set statusline+=%{&ff}] "file format
+set statusline+=[%{strlen(&fileencoding)?&fileencoding:&encoding},
+set statusline+=%{&fileformat}] 
 set statusline+=%y      "filetype
 set statusline+=%h      "help file flag
 set statusline+=%m      "modified flag
 set statusline+=%r      "read only flag
-set statusline+=\ %p%%\ %l:%c\ b%n    "percent row:col buffer
+set statusline+=\ %p%%\ %l:%c\ b%n  "percent row:col buffer
+
 "------------------------------------------------------------
 
