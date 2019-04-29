@@ -304,26 +304,24 @@ set statusline+=%#Conceal#       " colour
 set statusline+=%{&paste?'\ PASTE\ ':''}
 set statusline+=%{&spell?'\ SPELL\ ':''}
 
-set statusline+=\%n:\ %t         "file name
-set statusline+=%#LineNr#     " colour
-set statusline+=\%=           " align left
+set statusline+=\ %n:\ %t\     " file name
+set statusline+=%h             " help file flag
+set statusline+=%m             " modified flag
+set statusline+=%r             " read only flag
+set statusline+=%w             " write 
+set statusline+=%#LineNr#      " colour
+set statusline+=\%=            " align left
 
 " add syntastic warnings
 set statusline+=%#WarningMsg#
 set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%#Conceal#   " colour
-"
-" git status
-" skip as it can take a lot of space cutting the filename
-" when vertical windows are open. Use gs instead.
-"set statusline+=%{FugitiveStatusline()}
 
+set statusline+=%#LineNr#         " colour
 set statusline+=[%{strlen(&fileencoding)?&fileencoding:&encoding},
 set statusline+=%{&fileformat}]
-set statusline+=%y             " filetype
-set statusline+=%h             " help file flag
-set statusline+=%m             " modified flag
-set statusline+=%r             " read only flag
-set statusline+=\ %p%%\ %l:%c  " percent row:col
+set statusline+=%y\               " filetype
+
+set statusline+=%#Conceal#        " colour
+set statusline+=\ %P\ %l:%c\    " percent row:col
 "------------------------------------------------------------
 
