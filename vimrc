@@ -298,14 +298,14 @@ set noshowmode
 set statusline=
 set statusline+=%#DiffAdd#%{(mode()=='n')?'\ \ NORMAL\ ':''}
 set statusline+=%#DiffText#%{(mode()=='i')?'\ \ INSERT\ ':''}
-set statusline+=%#DiffChange#%{(mode()=='r')?'\ \ REPLACE\ ':''}
+set statusline+=%#DiffChange#%{(mode()=='r')?'\ \ RPLACE\ ':''}
 set statusline+=%#Visual#%{(mode()=='v')?'\ \ VISUAL\ ':''}
 
 set statusline+=%#Conceal#       " colour
 set statusline+=%{&paste?'\ PASTE\ ':''}
 set statusline+=%{&spell?'\ SPELL\ ':''}
 
-set statusline+=%t\         "file name
+set statusline+=%t         "file name
 set statusline+=%#LineNr#  " colour
 set statusline+=\%=        "align left
 
