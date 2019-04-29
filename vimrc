@@ -292,6 +292,8 @@ highlight ExtraWhitespace ctermbg=red guibg=red
 " this reports the full filename making %F in statusline redundant
 set title
 
+hi User1 ctermbg=darkgrey ctermfg=lightgrey guibg=darkgrey guifg=lightgrey
+
 " skip the mode as already shown in statusline
 set noshowmode
 set statusline=
@@ -300,7 +302,7 @@ set statusline+=%#DiffText#%{(mode()=='i')?'\ \ INSERT\ ':''}
 set statusline+=%#DiffChange#%{(mode()=='r')?'\ \ RPLACE\ ':''}
 set statusline+=%#Visual#%{(mode()=='v')?'\ \ VISUAL\ ':''}
 
-set statusline+=%#Conceal#       " colour
+set statusline+=%1*            " colour
 set statusline+=%{&paste?'\ PASTE\ ':''}
 set statusline+=%{&spell?'\ SPELL\ ':''}
 
@@ -321,7 +323,7 @@ set statusline+=[%{strlen(&fileencoding)?&fileencoding:&encoding},
 set statusline+=%{&fileformat}]
 set statusline+=%y\               " filetype
 
-set statusline+=%#Conceal#        " colour
+set statusline+=%1*             " colour
 set statusline+=\ %P\ %l:%c\    " percent row:col
 "------------------------------------------------------------
 
