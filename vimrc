@@ -307,10 +307,13 @@ set statusline+=%{&paste?'\ PASTE\ ':''}
 set statusline+=%{&spell?'\ SPELL\ ':''}
 
 set statusline+=\ %n:\ %t\     " file name
-set statusline+=%h             " help file flag
+
+set statusline+=%#WarningMsg#
+set statusline+=\ %h           " help file flag
 set statusline+=%m             " modified flag
 set statusline+=%r             " read only flag
 set statusline+=%w             " write
+
 set statusline+=%#LineNr#      " colour
 set statusline+=\%=            " align left
 
@@ -319,8 +322,6 @@ set statusline+=%#WarningMsg#
 set statusline+=%{SyntasticStatuslineFlag()}\  " syntastic
 
 set statusline+=%#LineNr#       " colour
-set statusline+=[%{strlen(&fileencoding)?&fileencoding:&encoding},
-set statusline+=%{&fileformat}]
 set statusline+=%y\             " filetype
 
 set statusline+=%1*             " colour
