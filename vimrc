@@ -292,7 +292,7 @@ highlight ExtraWhitespace ctermbg=red guibg=red
 " this reports the full filename making %F in statusline redundant
 set title
 
-hi User1 ctermbg=darkgrey ctermfg=lightgrey guibg=darkgrey guifg=lightgrey
+hi User1 ctermbg=black ctermfg=lightgrey guibg=black guifg=lightgrey
 
 " skip the mode as already shown in statusline
 set noshowmode
@@ -310,20 +310,20 @@ set statusline+=\ %n:\ %t\     " file name
 set statusline+=%h             " help file flag
 set statusline+=%m             " modified flag
 set statusline+=%r             " read only flag
-set statusline+=%w             " write 
+set statusline+=%w             " write
 set statusline+=%#LineNr#      " colour
 set statusline+=\%=            " align left
 
 " add syntastic warnings
 set statusline+=%#WarningMsg#
-set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%{SyntasticStatuslineFlag()}\  " syntastic
 
-set statusline+=%#LineNr#         " colour
+set statusline+=%#LineNr#       " colour
 set statusline+=[%{strlen(&fileencoding)?&fileencoding:&encoding},
 set statusline+=%{&fileformat}]
-set statusline+=%y\               " filetype
+set statusline+=%y\             " filetype
 
 set statusline+=%1*             " colour
-set statusline+=\ %P\ %l:%c\    " percent row:col
+set statusline+=\ %P\ %l,%c\    " percent row:col
 "------------------------------------------------------------
 
