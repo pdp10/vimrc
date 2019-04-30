@@ -292,7 +292,7 @@ highlight ExtraWhitespace ctermbg=red guibg=red
 " this reports the full filename making %F in statusline redundant
 set title
 
-hi User1 ctermbg=black ctermfg=lightgrey guibg=black guifg=lightgrey
+hi User1 ctermbg=lightgrey ctermfg=black guibg=lightgrey guifg=black cterm=bold gui=bold
 
 " skip the mode as already shown in statusline
 set noshowmode
