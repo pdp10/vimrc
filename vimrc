@@ -66,7 +66,7 @@ endtry
 " two powerful searches in addition to /
 " --- type <space>/ to search all occurrences of a given string in all files
 "  in the current directory
-nnoremap <space>/ :Ag
+nnoremap <space>/ :Ag 
 " --- type <space>\ to search a file in the filetree
 nnoremap <space>\ :vsplit<cr> :<C-u>Unite -start-insert file_rec/async<cr>
 
