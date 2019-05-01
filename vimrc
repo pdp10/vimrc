@@ -305,7 +305,7 @@ set title
 hi User1 ctermbg=lightgrey ctermfg=black guibg=lightgrey guifg=black cterm=bold gui=bold
 
 " skip the mode as already shown in statusline
-set noshowmode
+"set noshowmode
 set statusline=
 set statusline+=%#DiffAdd#%{(mode()=='n')?'\ \ NORMAL\ ':''}
 set statusline+=%#DiffText#%{(mode()=='i')?'\ \ INSERT\ ':''}
