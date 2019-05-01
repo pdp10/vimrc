@@ -245,6 +245,16 @@ let g:netrw_winsize = 25
 
 
 "------------------------------------------------------------
+" Opens a new file located in the same directory as the current file
+" on this buffer (,e), new tab (,t), or new window (,s ,v).
+map ,e :e <C-R>=expand("%:p:h") . "/" <CR>
+map ,t :tabe <C-R>=expand("%:p:h") . "/" <CR>
+map ,s :split <C-R>=expand("%:p:h") . "/" <CR>
+map ,v :vsplit <C-R>=expand("%:p:h") . "/" <CR>
+"------------------------------------------------------------
+
+
+"------------------------------------------------------------
 " Spellchecking
 " use :set nospell to disable spelling
 " files: http://ftp.vim.org/vim/runtime/spell/
