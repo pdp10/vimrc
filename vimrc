@@ -332,7 +332,7 @@ set statusline+=%#WarningMsg#
 set statusline+=%{SyntasticStatuslineFlag()}\  " syntastic
 
 set statusline+=%#LineNr#       " colour
-set statusline+=%y\             " filetype
+set statusline+=%Y\             " filetype
 
 set statusline+=%1*             " colour
 set statusline+=\ %P\ %l,%c\    " percent row:col
