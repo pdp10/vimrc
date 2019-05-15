@@ -56,11 +56,11 @@ if executable('ag')
  
 endif
 
-" bind K to grep word under cursor
-nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+" bind <space>/ to grep word under cursor in pwd
+nnoremap <space>/ :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
+" bind <space>\ to find all files in pwd with a certain pattern
 nnoremap <space>\ :Vex<SPACE>**/
-
 
 " useful commands
 " /string                  - highlight string in current file
@@ -68,10 +68,10 @@ nnoremap <space>\ :Vex<SPACE>**/
 "
 " :Ag string               - find string in all files in pwd using Ag (faster)
 " :grep -r string          - find string in all files in pwd using grep
-" K                        - find string under cursor in all files in pwd using grep
+" <space>/                 - find string under cursor in all files in pwd using grep
 "                            (or Ag if enabled)
 "
-" <space>/*file-pattern*   - find a file using a *file-pattern* in pwd
+" <space>\*file-pattern*   - find a file using a *file-pattern* in pwd
 
 
 
