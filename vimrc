@@ -5,7 +5,6 @@
 " -------------------------------------
 " To install:
 " :PlugInstall
-" cd ~/.vim/plugged/vimproc.vim && make
 " -------------------------------------
 
 
@@ -13,15 +12,6 @@ call plug#begin('~/.vim/plugged')
 
 " syntax checker
 Plug 'scrooloose/syntastic'
-
-" Unite (file manager)
-"   depend on vimproc
-"   you have to go to .vim/plugin/vimproc.vim and do a ./make
-Plug 'Shougo/vimproc.vim'
-Plug 'Shougo/unite.vim'
-
-" AG
-Plug 'rking/ag.vim'
 
 " GIT
 Plug 'tpope/vim-fugitive'
@@ -55,20 +45,33 @@ nnoremap gd :Gdiff<cr>
 nnoremap gb :Git branch<Space>
 nnoremap go :Git checkout<Space>
 
-" File Management
-" unite + ag (requires package: silversearcher-ag)
-let g:unite_source_history_yank_enable = 1
-try
-  let g:unite_source_rec_async_command='ag --nocolor --nogroup -g ""'
-  call unite#filters#matcher_default#use(['matcher_fuzzy'])
-catch
-endtry
-" two powerful searches in addition to /
-" --- type <space>/ to search all occurrences of a given string in all files
-"  in the current directory
-nnoremap <space>/ :Ag 
-" --- type <space>\ to search a file in the filetree
-nnoremap <space>\ :vsplit<cr> :<C-u>Unite -start-insert file_rec/async<cr>
+
+" The Silver Searcher :Ag
+if executable('ag')
+  " Use ag over grep
+  set grepprg=ag\ --nogroup\ --nocolor
+
+  " bind \ (backward slash) to grep shortcut
+  command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
+ 
+endif
+
+" bind K to grep word under cursor
+nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+
+nnoremap <space>\ :Vex<SPACE>**/
+
+
+" useful commands
+" /string                  - highlight string in current file
+" * (opp #)                - highlight string under cursor in current file
+"
+" :Ag string               - find string in all files in pwd using Ag (faster)
+" :grep -r string          - find string in all files in pwd using grep
+" K                        - find string under cursor in all files in pwd using grep
+"                            (or Ag if enabled)
+"
+" <space>/*file-pattern*   - find a file using a *file-pattern* in pwd
 
 
 

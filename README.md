@@ -9,6 +9,5 @@ mv .vimrc .vimrc.bak 2>/dev/null
 ln -s .vim/vimrc .vimrc
 
 # Inside vim run :PlugInstall 
-cd .vim/plugged/vimproc.vim && make
 ```
 
