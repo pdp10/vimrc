@@ -305,15 +305,51 @@ highlight ExtraWhitespace ctermbg=red guibg=red
 " this reports the full filename making %F in statusline redundant
 set title
 
+" Status Line Custom
+let g:currentmode={
+    \ 'n'  : 'Normal',
+    \ 'no' : 'Normal·Operator Pending',
+    \ 'v'  : 'Visual',
+    \ 'V'  : 'V·Line',
+    \ '^V' : 'V·Block',
+    \ 's'  : 'Select',
+    \ 'S'  : 'S·Line',
+    \ '^S' : 'S·Block',
+    \ 'i'  : 'Insert',
+    \ 'R'  : 'Replace',
+    \ 'Rv' : 'V·Replace',
+    \ 'c'  : 'Command',
+    \ 'cv' : 'Vim Ex',
+    \ 'ce' : 'Ex',
+    \ 'r'  : 'Prompt',
+    \ 'rm' : 'More',
+    \ 'r?' : 'Confirm',
+    \ '!'  : 'Shell',
+    \ 't'  : 'Terminal'
+    \}
+
+" abort -> function will abort soon as error detected
+function! ModeCurrent() abort
+    let l:modecurrent = mode()
+    let l:modelist = toupper(get(g:currentmode, l:modecurrent, 'V·Block '))
+    let l:current_status_mode = l:modelist
+    return l:current_status_mode
+endfunction
+
+" define colours in statusline
+" insert/replace modes
+au InsertEnter * hi statusline guifg=lightgrey guibg=red ctermfg=lightgrey ctermbg=red
+au InsertLeave * hi statusline guifg=lightgrey guibg=darkblue ctermfg=lightgrey ctermbg=darkblue
+" prevent colour inversion for the mode()
+hi statusline guifg=lightgrey guibg=darkblue ctermfg=lightgrey ctermbg=darkblue
+hi statuslineNC guifg=darkblue guibg=lightgrey ctermfg=darkblue ctermbg=lightgrey
+" other personalised colours
 hi User1 ctermbg=lightgrey ctermfg=black guibg=lightgrey guifg=black cterm=bold gui=bold
 
-" skip the mode as already shown in statusline
-"set noshowmode
+" skip the mode as it will be shown in the statusline
+set noshowmode
 set statusline=
-set statusline+=%#DiffAdd#%{(mode()=='n')?'\ \ NORMAL\ ':''}
-set statusline+=%#DiffText#%{(mode()=='i')?'\ \ INSERT\ ':''}
-set statusline+=%#DiffChange#%{(mode()=='r')?'\ \ RPLACE\ ':''}
-set statusline+=%#Visual#%{(mode()=='v')?'\ \ VISUAL\ ':''}
+set statusline+=%0*\ %{ModeCurrent()}\  " mode
 
 set statusline+=%1*            " colour
 set statusline+=%{&paste?'\ PASTE\ ':''}
