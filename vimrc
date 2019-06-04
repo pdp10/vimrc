@@ -283,14 +283,6 @@ endif
 
 
 "------------------------------------------------------------
-" Set colorscheme
-colorscheme koehler  " ron
-" Colour line numbers
-hi LineNr ctermfg=grey
-"------------------------------------------------------------
-
-
-"------------------------------------------------------------
 " trailing whitespace
 highlight ExtraWhitespace ctermbg=red guibg=red
 :nnoremap \wn :match ExtraWhitespace /\s\+$/<CR>
@@ -301,60 +293,26 @@ highlight ExtraWhitespace ctermbg=red guibg=red
 
 "------------------------------------------------------------
 " statusline
+
+" Set colorscheme
+colorscheme koehler  " ron
+
+" Colour line numbers
+hi LineNr ctermfg=grey
+
 " add a title on top of the shell
 " this reports the full filename making %F in statusline redundant
 set title
 
-" Status Line Custom
-let g:currentmode={
-    \ 'n'  : 'Normal',
-    \ 'no' : 'Normal·Operator Pending',
-    \ 'v'  : 'Visual',
-    \ 'V'  : 'V·Line',
-    \ '^V' : 'V·Block',
-    \ 's'  : 'Select',
-    \ 'S'  : 'S·Line',
-    \ '^S' : 'S·Block',
-    \ 'i'  : 'Insert',
-    \ 'R'  : 'Replace',
-    \ 'Rv' : 'V·Replace',
-    \ 'c'  : 'Command',
-    \ 'cv' : 'Vim Ex',
-    \ 'ce' : 'Ex',
-    \ 'r'  : 'Prompt',
-    \ 'rm' : 'More',
-    \ 'r?' : 'Confirm',
-    \ '!'  : 'Shell',
-    \ 't'  : 'Terminal'
-    \}
-
-" abort -> function will abort soon as error detected
-function! ModeCurrent() abort
-    let l:modecurrent = mode()
-    let l:modelist = toupper(get(g:currentmode, l:modecurrent, 'V·Block '))
-    let l:current_status_mode = l:modelist
-    return l:current_status_mode
-endfunction
-
-" define colours in statusline
-" insert/replace modes
-au InsertEnter * hi statusline guifg=lightgrey guibg=red ctermfg=lightgrey ctermbg=red
-au InsertLeave * hi statusline guifg=lightgrey guibg=darkblue ctermfg=lightgrey ctermbg=darkblue
-" prevent colour inversion for the mode()
-hi statusline guifg=lightgrey guibg=darkblue ctermfg=lightgrey ctermbg=darkblue
-hi statuslineNC guifg=darkblue guibg=lightgrey ctermfg=darkblue ctermbg=lightgrey
-" other personalised colours
+hi statusline guifg=lightgrey guibg=black ctermfg=lightgrey ctermbg=black
 hi User1 ctermbg=lightgrey ctermfg=black guibg=lightgrey guifg=black cterm=bold gui=bold
 
-" skip the mode as it will be shown in the statusline
-set noshowmode
+au InsertEnter * hi User1 ctermbg=red ctermfg=black guibg=red guifg=black cterm=bold gui=bold
+au InsertLeave * hi User1 ctermbg=lightgrey ctermfg=black guibg=lightgrey guifg=black cterm=bold gui=bold
+
 set statusline=
-set statusline+=%0*\ %{ModeCurrent()}\  " mode
 
 set statusline+=%1*            " colour
-set statusline+=%{&paste?'\ PASTE\ ':''}
-set statusline+=%{&spell?'\ SPELL\ ':''}
-
 set statusline+=\ %n:\ %t\     " file name
 
 set statusline+=%#WarningMsg#
@@ -372,8 +330,6 @@ set statusline+=%{SyntasticStatuslineFlag()}\  " syntastic
 
 set statusline+=%#LineNr#       " colour
 set statusline+=%Y\             " filetype
-
-set statusline+=%1*             " colour
 set statusline+=\ %P\ %l,%c\    " percent row:col
-"------------------------------------------------------------
 
+"------------------------------------------------------------
