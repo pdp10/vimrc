@@ -53,7 +53,7 @@ set confirm
 set expandtab
 set hidden
 set ignorecase
-" set mouse=a
+set mouse=a
 set nosmarttab
 set nostartofline
 set number
