@@ -1,15 +1,16 @@
-" Configuration file
+" configuration file
 " -------------------------------------
-" VIM
+" install vim
 " ln -s ~/.vim/vimrc ~/.vimrc
 "
-" NEOVIM
+" install neovim
 " mkdir ~/.config/nvim
 " ln -s ~/.vim/vimrc ~/.config/nvim/init.vim
 "
-" PLUGINS
+" install plugins
 " :PlugInstall
 " -------------------------------------
+
 
 " ###########
 " # Plugins #
@@ -18,7 +19,7 @@
 call plug#begin('~/.vim/plugged')
     " syntax checker
     Plug 'neomake/neomake'
-    " GIT
+    " git
     Plug 'tpope/vim-fugitive'
 call plug#end()
 " ----------------------------------------------------------------------------
@@ -124,12 +125,12 @@ nnoremap <space>/ :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 nnoremap <space>\ :Vex<SPACE>**/
 
 
-" Map Y to act like D and C, i.e. to yank until EOL, rather than act as yy,
+" map Y to act like D and C, i.e. to yank until EOL, rather than act as yy,
 " which is the default
 map Y y$
 
 
-" Opens a new file located in the same directory as the current file
+" opens a new file located in the same directory as the current file
 " on this buffer (,e), new tab (,t), or new window (,s ,v).
 map ,e :e <C-R>=expand("%:p:h") . "/" <CR>
 map ,t :tabe <C-R>=expand("%:p:h") . "/" <CR>
@@ -143,7 +144,7 @@ highlight ExtraWhitespace ctermbg=red guibg=red
 :nnoremap \wf :match<CR>
 
 
-" Configuration for netrw (file browser)
+" netrw configuration (file browser)
 " Open file browser: :Vex, :Hex, :Ex (same buffer).
 " Change buffer: :bn, :bp
 " Change tab: Ctrl+w (twice)
@@ -154,10 +155,14 @@ let g:netrw_altv = 1
 let g:netrw_winsize = 25
 
 
-" Set colorscheme
+" set colorscheme
 colorscheme koehler  " ron
-" Colour line numbers
+
+
+" colour line numbers
 hi LineNr ctermfg=grey
+
+
 " add a title on top of the shell
 " this reports the full filename making %F in statusline redundant
 set title
