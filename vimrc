@@ -16,10 +16,10 @@
 " ###########
 " ----------------------------------------------------------------------------
 call plug#begin('~/.vim/plugged')
-  " syntax checker
-  Plug 'neomake/neomake'
-  " GIT
-  Plug 'tpope/vim-fugitive'
+    " syntax checker
+    Plug 'neomake/neomake'
+    " GIT
+    Plug 'tpope/vim-fugitive'
 call plug#end()
 " ----------------------------------------------------------------------------
 
@@ -29,37 +29,37 @@ call plug#end()
 " # Main config #
 " ###############
 if has('nvim')
-    " Type <C-\><C-N> to leave terminal mode
+    " type <C-\><C-N> to leave terminal mode
     cabbrev term vs term://bash
 else
     " these settings are defaults in NVIM
     syntax on
     filetype indent plugin on
     set nocompatible
-    set wildmenu
-    set showcmd
-    set hlsearch
-    set backspace=indent,eol,start
     set autoindent
-    set ruler
-    set laststatus=2
+    set backspace=indent,eol,start
     set belloff=all
+    set hlsearch
+    set laststatus=2
+    set ruler
+    set showcmd
     set ttimeoutlen=50
+    set wildmenu
     cabbrev term vert term
 endif
 
+set cmdheight=2
+set confirm
+set expandtab
 set hidden
 set ignorecase
-set smartcase
-set nostartofline
-set confirm
-set mouse=a
-set cmdheight=2
-set number
+" set mouse=a
 set nosmarttab
+set nostartofline
+set number
+set smartcase
 set shiftwidth=4
 set softtabstop=4
-set expandtab
 set splitright
 " ----------------------------------------------------------------------------
 
@@ -127,11 +127,6 @@ nnoremap <space>\ :Vex<SPACE>**/
 " Map Y to act like D and C, i.e. to yank until EOL, rather than act as yy,
 " which is the default
 map Y y$
-
-
-" Map <C-L> (redraw screen) to also turn off search highlighting until the
-" next search
-nnoremap <C-L> :nohl<CR><C-L>
 
 
 " Opens a new file located in the same directory as the current file
