@@ -44,7 +44,6 @@ else
     set laststatus=2
     set belloff=all
     set ttimeoutlen=50
-    set cmdheight=2
     cabbrev term vert term
 endif
 
