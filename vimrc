@@ -78,7 +78,8 @@ let g:neomake_open_list = 2
 " git
 " -- git-fugitive
 " to execute any git command, use :Git [args]
-nnoremap ga :Git add %:p<cr><cr>
+" essentially `git add this_file`
+nnoremap ga :Gwrite %:p<cr>
 " instead of gs, one can use :G
 nnoremap gs :Gstatus<cr>
 nnoremap gc :Gcommit -v -q %:p<cr>
