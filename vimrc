@@ -33,35 +33,37 @@ if has('nvim')
     " type <C-\><C-N> to leave terminal mode
     cabbrev term vs term://bash
 else
-    " these settings are defaults in NVIM
-    syntax on
-    filetype indent plugin on
-    set nocompatible
-    set autoindent
-    set backspace=indent,eol,start
-    set belloff=all
-    set hlsearch
-    set laststatus=2
-    set ruler
-    set showcmd
-    set ttimeoutlen=50
-    set wildmenu
     cabbrev term vert term
 endif
 
+" these settings should be defaults in NVIM
+syntax on
+filetype indent plugin on
+set nocompatible
+set autoindent
+set backspace=indent,eol,start
+set belloff=all
+set hlsearch
+set laststatus=2
+set ruler
+set showcmd
+set ttimeoutlen=50
+set wildmenu
+
+" other settings
 set cmdheight=2
 set confirm
-set expandtab
 set hidden
 set ignorecase
+set smartcase
 set mouse=a
 set nosmarttab
 set nostartofline
 set number
-set smartcase
 set shiftwidth=4
 set softtabstop=4
 set splitright
+set expandtab
 " ----------------------------------------------------------------------------
 
 
