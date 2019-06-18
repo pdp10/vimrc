@@ -29,6 +29,7 @@ call plug#end()
 " # Main config #
 " ###############
 if has('nvim')
+    " Type <C-\><C-N> to leave terminal mode
     cabbrev term vs term://bash
 else
     " these settings are defaults in NVIM
@@ -175,15 +176,14 @@ au InsertEnter * hi User1 ctermbg=red ctermfg=black guibg=red guifg=black cterm=
 au InsertLeave * hi User1 ctermbg=lightgrey ctermfg=black guibg=lightgrey guifg=black cterm=bold gui=bold
 
 set statusline=
-set statusline+=%1*            " colour
-set statusline+=\ %n:\ %t\     " file name
+set statusline+=%1*             " colour
+set statusline+=\ %n:\ %t\      " file name
 set statusline+=%#WarningMsg#
-set statusline+=\ %h           " help file flag
-set statusline+=%m             " modified flag
-set statusline+=%r             " read only flag
-set statusline+=%w             " write
-set statusline+=%#LineNr#      " colour
-set statusline+=\%=            " align left
-set statusline+=%Y\             " filetype
-set statusline+=\ %P\ %l,%c\    " percent row:col
+set statusline+=\ %h            " help file flag
+set statusline+=%m              " modified flag
+set statusline+=%r              " read only flag
+set statusline+=%w              " write
+set statusline+=%#LineNr#       " colour
+set statusline+=\%=             " align left
+set statusline+=%y\ %P\ %l,%c\  " filetype, percent, row:col
 "------------------------------------------------------------
