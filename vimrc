@@ -150,15 +150,19 @@ highlight ExtraWhitespace ctermbg=red guibg=red
 " Open file browser: :Vex, :Hex, :Ex (same buffer).
 " Change buffer: :bn, :bp
 " Change tab: Ctrl+w (twice)
-let g:netrw_banner = 0
-let g:netrw_liststyle = 3
-let g:netrw_browse_split = 4
-let g:netrw_altv = 1
-let g:netrw_winsize = 25
+let g:netrw_banner=0
+let g:netrw_liststyle=3
+let g:netrw_browse_split=2  "open in a new vertical split
+let g:netrw_altv=1
+let g:netrw_winsize=25
+
+
+" neomake config
+"g:neomake_python_pycodestyle_args = ['--max-line-length=9999']
 
 
 " set colorscheme
-colorscheme koehler  " ron
+colorscheme koehler
 
 
 " colour line numbers
