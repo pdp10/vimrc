@@ -1,5 +1,5 @@
 " configuration file
-" -------------------------------------
+" ----------------------------------------------------------------------------
 " install vim
 " ln -s ~/.vim/vimrc ~/.vimrc
 "
@@ -9,7 +9,9 @@
 "
 " install plugins
 " :PlugInstall
-" -------------------------------------
+"
+" suggested packages: python-flake8, python-pylint, ag-silversearcher
+" ----------------------------------------------------------------------------
 
 
 " ###########
@@ -78,6 +80,8 @@ set expandtab
 " normal mode (after 1s; no delay when writing).
 "call neomake#configure#automake('nrwi', 1000)
 let g:neomake_open_list = 2
+let g:neomake_python_flake8_maker = { 'args': ['--max-line-length=100'] }
+let g:neomake_python_enabled_makers = ['flake8', 'pylint']
 
 " git
 " -- git-fugitive
@@ -94,9 +98,9 @@ nnoremap go :Git checkout<Space>
 
 
 "------------------------------------------------------------
-" ###################
-" # Personal config #
-" ###################
+" #################
+" # Commands conf #
+" #################
 
 " some useful commands
 " --------------------
@@ -126,11 +130,9 @@ nnoremap <space>/ :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 " bind <space>\ to find all files in pwd with a certain pattern
 nnoremap <space>\ :Vex<SPACE>**/
 
-
 " map Y to act like D and C, i.e. to yank until EOL, rather than act as yy,
 " which is the default
 map Y y$
-
 
 " opens a new file located in the same directory as the current file
 " on this buffer (,e), new tab (,t), or new window (,s ,v).
@@ -139,12 +141,10 @@ map ,t :tabe <C-R>=expand("%:p:h") . "/" <CR>
 map ,s :split <C-R>=expand("%:p:h") . "/" <CR>
 map ,v :vsplit <C-R>=expand("%:p:h") . "/" <CR>
 
-
 " trailing whitespace
 highlight ExtraWhitespace ctermbg=red guibg=red
 :nnoremap \wn :match ExtraWhitespace /\s\+$/<CR>
 :nnoremap \wf :match<CR>
-
 
 " netrw configuration (file browser)
 " Open file browser: :Vex, :Hex, :Ex (same buffer).
@@ -155,32 +155,49 @@ let g:netrw_liststyle=3
 let g:netrw_browse_split=2  "open in a new vertical split
 let g:netrw_altv=1
 let g:netrw_winsize=25
+"------------------------------------------------------------
 
 
-" neomake config
-"g:neomake_python_pycodestyle_args = ['--max-line-length=9999']
-
+"------------------------------------------------------------
+" ##############
+" # Style conf #
+" ##############
 
 " set colorscheme
 colorscheme koehler
 
-
 " colour line numbers
 hi LineNr ctermfg=grey
-
 
 " add a title on top of the shell
 " this reports the full filename making %F in statusline redundant
 set title
 
-
 " statusline
+" Find out current buffer's size and output it.
+function! FileSize()
+  let bytes = getfsize(expand('%:p'))
+  if (bytes >= 1024)
+    let kbytes = bytes / 1024
+  endif
+  if (exists('kbytes') && kbytes >= 1000)
+    let mbytes = kbytes / 1000
+  endif
+  if bytes <= 0
+    return '0'
+  endif
+  if (exists('mbytes'))
+    return mbytes . 'MB '
+  elseif (exists('kbytes'))
+    return kbytes . 'KB '
+  else
+    return bytes . 'B '
+  endif
+endfunction
 hi statusline guifg=lightgrey guibg=black ctermfg=lightgrey ctermbg=black
 hi User1 ctermbg=lightgrey ctermfg=black guibg=lightgrey guifg=black cterm=bold gui=bold
-
 au InsertEnter * hi User1 ctermbg=red ctermfg=black guibg=red guifg=black cterm=bold gui=bold
 au InsertLeave * hi User1 ctermbg=lightgrey ctermfg=black guibg=lightgrey guifg=black cterm=bold gui=bold
-
 set statusline=
 set statusline+=%1*             " colour
 set statusline+=\ %n:\ %t\      " file name
@@ -191,5 +208,7 @@ set statusline+=%r              " read only flag
 set statusline+=%w              " write
 set statusline+=%#LineNr#       " colour
 set statusline+=\%=             " align left
-set statusline+=%y\ %P\ %l,%c\  " filetype, percent, row:col
+set statusline+=\ %y                                " FileType
+set statusline+=\ %-3(%{FileSize()}%)               " File size
+set statusline+=\ %P\ %l,%c\  " percent, row:col
 "------------------------------------------------------------
