@@ -156,10 +156,21 @@ let g:netrw_winsize=25
 " ##############
 
 " set colorscheme
-colorscheme koehler
+colorscheme ron   "koehler
+" make sure these always have bold font
+:highlight Comment cterm=bold
+:highlight Identifier cterm=bold
+:highlight Statement cterm=bold
+:highlight PreProc cterm=bold
+:highlight Type cterm=bold
+:highlight Special cterm=bold
+:highlight Underlined cterm=bold
+:highlight Ignore cterm=bold
+:highlight Error cterm=bold
+:highlight Todo cterm=bold
 
 " colour line numbers
-hi LineNr ctermfg=grey
+hi LineNr ctermfg=grey cterm=bold
 
 " add a title on top of the shell
 " this reports the full filename making %F in statusline redundant
