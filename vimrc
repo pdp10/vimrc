@@ -198,11 +198,10 @@ function! FileSize()
   endif
 endfunction
 hi statusline guifg=lightgrey guibg=black ctermfg=lightgrey ctermbg=black
-hi User1 ctermbg=lightgrey ctermfg=black guibg=lightgrey guifg=black cterm=bold gui=bold
-au InsertEnter * hi User1 ctermbg=red ctermfg=black guibg=red guifg=black cterm=bold gui=bold
-au InsertLeave * hi User1 ctermbg=lightgrey ctermfg=black guibg=lightgrey guifg=black cterm=bold gui=bold
+hi statusline ctermbg=lightgrey ctermfg=black guibg=lightgrey guifg=black cterm=bold gui=bold
+au InsertEnter * hi statusline ctermbg=red ctermfg=black guibg=red guifg=black cterm=bold gui=bold
+au InsertLeave * hi statusline ctermbg=lightgrey ctermfg=black guibg=lightgrey guifg=black cterm=bold gui=bold
 set statusline=
-set statusline+=%1*             " colour
 set statusline+=\ %n:\ %t\      " file name
 set statusline+=%#WarningMsg#
 set statusline+=\ %h            " help file flag
