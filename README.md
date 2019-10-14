@@ -1,17 +1,12 @@
 # Install
 
 ```
-cd ~/
-git clone https://github.com/pdp10/vimrc.git .vim
-
 # VIM
-mv ~/.vimrc ~/.vimrc.bak
-ln -s ~/.vim/vimrc ~/.vimrc
+git clone https://github.com/pdp10/vimrc.git $HOME/.vim
 
 # NEOVIM
-mkdir -p ~/.config/nvim
-ln -s ~/.vim/vimrc ~/.config/nvim/init.vim
+git clone https://github.com/pdp10/vimrc.git $HOME/.config/nvim
 
-# Inside vim/neovim run 
-:PlugInstall 
+# After starting vim/nvim run:
+:PlugInstall
 ```

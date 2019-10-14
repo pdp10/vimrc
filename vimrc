@@ -1,14 +1,6 @@
 " configuration file
 " ----------------------------------------------------------------------------
-" install vim
-" ln -s ~/.vim/vimrc ~/.vimrc
-"
-" install neovim
-" mkdir ~/.config/nvim
-" ln -s ~/.vim/vimrc ~/.config/nvim/init.vim
-"
-" install plugins
-" :PlugInstall
+" See README
 "
 " suggested packages: python-flake8, python-pylint, ag-silversearcher
 " ----------------------------------------------------------------------------
