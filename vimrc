@@ -177,40 +177,20 @@ hi LineNr ctermfg=grey cterm=bold
 set title
 
 " statusline
-" Find out current buffer's size and output it.
-function! FileSize()
-  let bytes = getfsize(expand('%:p'))
-  if (bytes >= 1024)
-    let kbytes = bytes / 1024
-  endif
-  if (exists('kbytes') && kbytes >= 1000)
-    let mbytes = kbytes / 1000
-  endif
-  if bytes <= 0
-    return '0'
-  endif
-  if (exists('mbytes'))
-    return mbytes . 'MB '
-  elseif (exists('kbytes'))
-    return kbytes . 'KB '
-  else
-    return bytes . 'B '
-  endif
-endfunction
-hi statusline guifg=lightgrey guibg=black ctermfg=lightgrey ctermbg=black
-hi statusline ctermbg=lightgrey ctermfg=black guibg=lightgrey guifg=black cterm=bold gui=bold
-au InsertEnter * hi statusline ctermbg=red ctermfg=black guibg=red guifg=black cterm=bold gui=bold
-au InsertLeave * hi statusline ctermbg=lightgrey ctermfg=black guibg=lightgrey guifg=black cterm=bold gui=bold
+"hi statusline guifg=lightgrey guibg=black ctermfg=lightgrey ctermbg=black
+"hi statusline ctermbg=lightgrey ctermfg=black guibg=lightgrey guifg=black cterm=bold gui=bold
+"au InsertEnter * hi statusline ctermbg=red ctermfg=black guibg=red guifg=black cterm=bold gui=bold
+"au InsertLeave * hi statusline ctermbg=lightgrey ctermfg=black guibg=lightgrey guifg=black cterm=bold gui=bold
+" cterm=bold gui=bold
 set statusline=
 set statusline+=\ %n:\ %t\      " file name
-set statusline+=%#WarningMsg#
+"set statusline+=%#WarningMsg#
 set statusline+=\ %h            " help file flag
 set statusline+=%m              " modified flag
 set statusline+=%r              " read only flag
 set statusline+=%w              " write
-set statusline+=%#LineNr#       " colour
+"set statusline+=%#LineNr#       " colour
 set statusline+=\%=             " align left
-set statusline+=\ %y                                " FileType
-set statusline+=\ %-3(%{FileSize()}%)               " File size
+"set statusline+=\ %y                                " FileType
 set statusline+=\ %P\ %l,%c\  " percent, row:col
 "------------------------------------------------------------
