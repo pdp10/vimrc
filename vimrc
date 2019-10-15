@@ -15,6 +15,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'neomake/neomake'
     " git
     Plug 'tpope/vim-fugitive'
+    " statusline
+    Plug 'itchyny/lightline.vim'
 call plug#end()
 " ----------------------------------------------------------------------------
 
@@ -86,6 +88,24 @@ nnoremap gc :Gcommit -v -q %:p<cr>
 nnoremap gd :Gdiff<cr>
 nnoremap gb :Git branch<Space>
 nnoremap go :Git checkout<Space>
+
+" lightline
+" possibly remove [fileformat .. filetype]
+let g:lightline = {
+  \ 'colorscheme': 'wombat',
+  \ 'active': {
+  \   'right': [ 
+  \              [ 'lineinfo' ],
+  \              [ 'percent' ],
+  \              [ 'fileformat', 'fileencoding', 'filetype' ],
+  \    ]
+  \ },
+  \ 'component': {
+  \   'filename': '%n:%t'
+  \ },
+\ }
+" do not show default vim mode() 
+set noshowmode
 "------------------------------------------------------------
 
 
@@ -173,24 +193,16 @@ colorscheme ron   "koehler
 hi LineNr ctermfg=grey cterm=bold
 
 " add a title on top of the shell
-" this reports the full filename making %F in statusline redundant
+" report the full filename making %F in statusline redundant
 set title
 
-" statusline
-"hi statusline guifg=lightgrey guibg=black ctermfg=lightgrey ctermbg=black
-"hi statusline ctermbg=lightgrey ctermfg=black guibg=lightgrey guifg=black cterm=bold gui=bold
-"au InsertEnter * hi statusline ctermbg=red ctermfg=black guibg=red guifg=black cterm=bold gui=bold
-"au InsertLeave * hi statusline ctermbg=lightgrey ctermfg=black guibg=lightgrey guifg=black cterm=bold gui=bold
-" cterm=bold gui=bold
-set statusline=
-set statusline+=\ %n:\ %t\      " file name
-"set statusline+=%#WarningMsg#
-set statusline+=\ %h            " help file flag
-set statusline+=%m              " modified flag
-set statusline+=%r              " read only flag
-set statusline+=%w              " write
-"set statusline+=%#LineNr#       " colour
-set statusline+=\%=             " align left
-"set statusline+=\ %y                                " FileType
-set statusline+=\ %P\ %l,%c\  " percent, row:col
+" minimalistic statusline (replaced by lightline plugin)
+"set statusline=
+"set statusline+=\ %n:\ %t\      " buffer #: file name
+"set statusline+=\ %h            " help file flag
+"set statusline+=%m              " modified flag
+"set statusline+=%r              " read only flag
+"set statusline+=%w              " write
+"set statusline+=\%=             " align left
+"set statusline+=\ %P\ %l,%c\    " percent, row:col
 "------------------------------------------------------------
