@@ -90,14 +90,14 @@ nnoremap gb :Git branch<Space>
 nnoremap go :Git checkout<Space>
 
 " lightline
-" possibly remove [fileformat .. filetype]
+" additional infos:
+"  \              [ 'fileformat', 'fileencoding', 'filetype' ],
 let g:lightline = {
   \ 'colorscheme': 'wombat',
   \ 'active': {
   \   'right': [ 
   \              [ 'lineinfo' ],
   \              [ 'percent' ],
-  \              [ 'fileformat', 'fileencoding', 'filetype' ],
   \    ]
   \ },
   \ 'component': {
