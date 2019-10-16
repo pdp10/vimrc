@@ -91,8 +91,11 @@ nnoremap go :Git checkout<Space>
 
 " lightline
 " See https://github.com/itchyny/lightline.vim/blob/master/doc/lightline.txt
+"  \ 'colorscheme': 'wombat',
+"  \ 'colorscheme': 'seoul256',
+"  \ 'colorscheme': 'jellybeans',
 let g:lightline = {
-  \ 'colorscheme': 'wombat',
+  \ 'colorscheme': 'jellybeans',
   \ 'active': {
   \   'left': [ 
   \     [ 'mode', 'paste' ],
