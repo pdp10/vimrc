@@ -90,15 +90,27 @@ nnoremap gb :Git branch<Space>
 nnoremap go :Git checkout<Space>
 
 " lightline
-" additional infos:
-"  \              [ 'fileformat', 'fileencoding', 'filetype' ],
+" See https://github.com/itchyny/lightline.vim/blob/master/doc/lightline.txt
 let g:lightline = {
   \ 'colorscheme': 'wombat',
   \ 'active': {
+  \   'left': [ 
+  \     [ 'mode', 'paste' ],
+  \     [ 'filename', 'readonly', 'modified' ] 
+  \   ],
   \   'right': [ 
-  \              [ 'lineinfo' ],
-  \              [ 'percent' ],
-  \    ]
+  \     [ 'lineinfo' ],
+  \     [ 'percentwin' ],
+  \     [ 'filetype' ],
+  \   ],
+  \ },
+  \ 'inactive': {
+  \   'left': [ 
+  \     [ 'filename' ],
+  \   ],
+  \   'right': [
+  \     [ 'lineinfo' ],
+  \  ],
   \ },
   \ 'component': {
   \   'filename': '%n:%t'
