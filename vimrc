@@ -60,8 +60,6 @@ set shiftwidth=4
 set softtabstop=4
 set splitright
 set expandtab
-
-
 " ----------------------------------------------------------------------------
 
 
@@ -93,29 +91,30 @@ nnoremap go :Git checkout<Space>
 
 " lightline
 " See https://github.com/itchyny/lightline.vim/blob/master/doc/lightline.txt
-"  \ 'colorscheme': 'wombat',
-"  \ 'colorscheme': 'Tomorrow_Night_Blue',
-"  \ 'colorscheme': 'Tomorrow_Night_Bright',
-"  \ 'colorscheme': 'srcery_drk',
+" NOTE: added `[ ]` to customise colour contrast
 let g:lightline = {
-  \ 'colorscheme': 'srcery_drk',
+  \ 'colorscheme': 'Tomorrow_Night_Bright',
   \ 'active': {
   \   'left': [ 
   \     [ 'mode', 'paste' ],
-  \     [ 'filename', 'readonly', 'modified' ] 
+  \     [ 'filename', 'readonly', 'modified' ], 
   \   ],
   \   'right': [ 
-  \     [ 'lineinfo' ],
-  \     [ 'percentwin' ],
+  \     [ ],
+  \     [ 'percentwin', 'lineinfo' ],
   \     [ 'filetype' ],
   \   ],
   \ },
   \ 'inactive': {
-  \   'left': [ 
+  \   'left': [
+  \     [ ],
+  \     [ ],
   \     [ 'filename' ],
   \   ],
   \   'right': [
-  \     [ 'lineinfo' ],
+  \     [ ],
+  \     [ ],
+  \     [ 'percentwin' ],
   \  ],
   \ },
   \ 'component': {
