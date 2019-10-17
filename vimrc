@@ -60,6 +60,8 @@ set shiftwidth=4
 set softtabstop=4
 set splitright
 set expandtab
+
+
 " ----------------------------------------------------------------------------
 
 
@@ -92,10 +94,11 @@ nnoremap go :Git checkout<Space>
 " lightline
 " See https://github.com/itchyny/lightline.vim/blob/master/doc/lightline.txt
 "  \ 'colorscheme': 'wombat',
-"  \ 'colorscheme': 'seoul256',
-"  \ 'colorscheme': 'jellybeans',
+"  \ 'colorscheme': 'Tomorrow_Night_Blue',
+"  \ 'colorscheme': 'Tomorrow_Night_Bright',
+"  \ 'colorscheme': 'srcery_drk',
 let g:lightline = {
-  \ 'colorscheme': 'jellybeans',
+  \ 'colorscheme': 'srcery_drk',
   \ 'active': {
   \   'left': [ 
   \     [ 'mode', 'paste' ],
