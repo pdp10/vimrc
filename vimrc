@@ -136,20 +136,20 @@ set noshowmode
 " /string                  - highlight string in current file
 " * (opp #)                - highlight string under cursor in current file
 "
-" :Ag string               - find string in all files in pwd using Ag (faster)
+" :ag string               - find string in all files in pwd using ag (faster)
 " :grep -r string          - find string in all files in pwd using grep
 " <space>/                 - find string under cursor in all files in pwd using grep
-"                            (or Ag if enabled)
+"                            (or ag if enabled)
 "
 " <space>\*file-pattern*   - find a file using a *file-pattern* in pwd
 
-" The Silver Searcher :Ag
+" The Silver Searcher :ag
 if executable('ag')
   " Use ag over grep
   set grepprg=ag\ --nogroup\ --nocolor
 
   " bind \ (backward slash) to grep shortcut
-  command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
+  command -nargs=+ -complete=file -bar ag silent! grep! <args>|cwindow|redraw!
  
 endif
 
