@@ -15,4 +15,6 @@ alias vi="$VISUAL"
 
 # After starting vim/nvim run:
 :PlugInstall
+
+# plugins will be installed in $HOME/.vim whether VIM or NEOVIM is used
 ```
