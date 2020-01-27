@@ -109,7 +109,7 @@ let g:lightline = {
   \   'left': [
   \     [ ],
   \     [ ],
-  \     [ 'filename' ],
+  \     [ 'filename', 'modified' ], 
   \   ],
   \   'right': [
   \     [ ],
