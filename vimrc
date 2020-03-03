@@ -89,6 +89,15 @@ nnoremap gd :Gdiff<cr>
 nnoremap gb :Git branch<Space>
 nnoremap go :Git checkout<Space>
 
+" trailing whitespace
+" Ahead of any colorscheme to prevent this highlight group to be cleared
+" by successive colorscheme commands
+:autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
+" show trailing whitespace:
+:nnoremap \wn :match ExtraWhitespace /\s\+$/<CR>
+" switch off :match highlighting
+:nnoremap \wf :match<CR>
+
 " lightline
 " See https://github.com/itchyny/lightline.vim/blob/master/doc/lightline.txt
 " NOTE: added `[ ]` to customise colour contrast
@@ -169,11 +178,6 @@ map ,e :e <C-R>=expand("%:p:h") . "/" <CR>
 map ,t :tabe <C-R>=expand("%:p:h") . "/" <CR>
 map ,s :split <C-R>=expand("%:p:h") . "/" <CR>
 map ,v :vsplit <C-R>=expand("%:p:h") . "/" <CR>
-
-" trailing whitespace
-highlight ExtraWhitespace ctermbg=red guibg=red
-:nnoremap \wn :match ExtraWhitespace /\s\+$/<CR>
-:nnoremap \wf :match<CR>
 
 " netrw configuration (file browser)
 " Open file browser: :Vex, :Hex, :Ex (same buffer).
