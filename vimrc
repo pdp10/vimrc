@@ -94,9 +94,16 @@ nnoremap go :Git checkout<Space>
 " by successive colorscheme commands
 :autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
 " show trailing whitespace:
-:nnoremap \wn :match ExtraWhitespace /\s\+$/<CR>
+" always visible. Also prevent highlighting while in the insert mode
+autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+autocmd BufWinLeave * call clearmatches()
+" visible on-demand
+" :nnoremap \wn :match ExtraWhitespace /\s\+$/<CR>
 " switch off :match highlighting
 :nnoremap \wf :match<CR>
+
 
 " lightline
 " See https://github.com/itchyny/lightline.vim/blob/master/doc/lightline.txt
