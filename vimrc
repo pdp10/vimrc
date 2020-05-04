@@ -44,6 +44,8 @@ set laststatus=2
 set ruler
 set showcmd
 set ttimeoutlen=50
+" Bash-like completion using TAB
+set wildmode=longest:full,full
 set wildmenu
 
 " other settings
