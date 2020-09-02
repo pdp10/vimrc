@@ -113,11 +113,11 @@ autocmd BufWinLeave * call clearmatches()
 let g:lightline = {
   \ 'colorscheme': 'Tomorrow_Night_Bright',
   \ 'active': {
-  \   'left': [ 
+  \   'left': [
   \     [ 'mode', 'paste' ],
-  \     [ 'filename', 'readonly', 'modified' ], 
+  \     [ 'filename', 'readonly', 'modified' ],
   \   ],
-  \   'right': [ 
+  \   'right': [
   \     [ ],
   \     [ 'percentwin', 'lineinfo' ],
   \     [ 'filetype' ],
@@ -127,7 +127,7 @@ let g:lightline = {
   \   'left': [
   \     [ ],
   \     [ ],
-  \     [ 'filename', 'modified' ], 
+  \     [ 'filename', 'modified' ],
   \   ],
   \   'right': [
   \     [ ],
@@ -139,7 +139,7 @@ let g:lightline = {
   \   'filename': '%n:%t'
   \ },
 \ }
-" do not show default vim mode() 
+" do not show default vim mode()
 set noshowmode
 "------------------------------------------------------------
 
@@ -168,7 +168,7 @@ if executable('ag')
 
   " bind \ (backward slash) to grep shortcut
   command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
- 
+
 endif
 
 " bind <space>/ to grep word under cursor in pwd
@@ -197,6 +197,20 @@ let g:netrw_liststyle=3
 let g:netrw_browse_split=2  "open in a new vertical split
 let g:netrw_altv=1
 let g:netrw_winsize=25
+"------------------------------------------------------------
+
+
+"------------------------------------------------------------
+" ##############
+" # Fold lines #
+" ##############
+setlocal foldmethod=indent
+" commands:
+" zr - unfold 1 level
+" zm - fold 1 level
+" zR - unfold everything
+" zM - fold everything
+" za - fold / unfold current block
 "------------------------------------------------------------
 
 
