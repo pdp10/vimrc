@@ -250,3 +250,8 @@ set title
 "set statusline+=\%=             " align left
 "set statusline+=\ %P\ %l,%c\    " percent, row:col
 "------------------------------------------------------------
+
+
+
+" language
+au BufNewFile,BufRead Jenkinsfile setf groovy
